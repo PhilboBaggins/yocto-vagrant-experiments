@@ -4,7 +4,7 @@
 set -o nounset  # (set -u) No unset variables
 set -o errexit  # (set -e) Exit if any statement returns non-true value
 
-YOCTO_REQUIREMENTS="gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm"
+YOCTO_REQUIREMENTS="gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm zstd liblz4-tool"
 PACKAGES_I_LIKE_TO_HAVE="git tig tree htop dos2unix ripgrep"
 
 export DEBIAN_FRONTEND=noninteractive
