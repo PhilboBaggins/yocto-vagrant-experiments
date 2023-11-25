@@ -10,12 +10,12 @@ repos:
   meta-raspberry:
     url: https://github.com/agherzan/meta-raspberrypi/
     path: layers/meta-raspberry
-    refspec: master
+    refspec: kirkstone
 
   poky:
     url: https://git.yoctoproject.org/git/poky
     path: layers/poky
-    refspec: master
+    refspec: kirkstone
     layers:
       meta:
       meta-poky:
@@ -24,7 +24,7 @@ repos:
   meta-openembedded:
     url: http://git.openembedded.org/meta-openembedded
     path: layers/meta-openembedded
-    refspec: master
+    refspec: kirkstone
     layers:
       meta-oe:
       meta-python:
@@ -34,7 +34,7 @@ repos:
   meta-qt5:
     url: https://github.com/meta-qt5/meta-qt5/
     path: layers/meta-qt5
-    refspec: master
+    refspec: kirkstone
 
 bblayers_conf_header:
   standard: |
