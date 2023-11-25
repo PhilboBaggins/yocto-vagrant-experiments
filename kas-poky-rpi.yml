@@ -8,6 +8,9 @@ target:
 
 repos:
   meta-raspberry:
+    url: https://github.com/agherzan/meta-raspberrypi/
+    path: layers/meta-raspberry
+    refspec: master
 
   poky:
     url: https://git.yoctoproject.org/git/poky
