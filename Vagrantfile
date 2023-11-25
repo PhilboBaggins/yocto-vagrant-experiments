@@ -5,19 +5,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/focal64"
 
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
-  # Disable the default share of the current code directory. Doing this
-  # provides improved isolation between the vagrant box and your host
-  # by making sure your Vagrantfile isn't accessable to the vagrant box.
-  # If you use this you may want to enable additional shared subfolders as
-  # shown above.
-  # config.vm.synced_folder ".", "/vagrant", disabled: true
-
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
@@ -33,11 +20,17 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+  config.vm.provision :shell, privileged: true,  path: "scripts/install-os-packages.sh"
+  config.vm.provision :shell, privileged: true,  path: "scripts/install-kas-build-tool.sh"
+
+  # Folder sync
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "./conf", "/vagrant/conf"
+  config.vm.synced_folder "./scripts", "/vagrant/scripts"
+  config.vm.synced_folder "./build/conf", "/vagrant/build/conf"
+  config.vm.provision "shell", inline: <<-SHELL
+    # Fix file permissions on folders above those being synced
+    sudo chown vagrant:vagrant /vagrant
+    sudo chown vagrant:vagrant /vagrant/build
+  SHELL
 end
